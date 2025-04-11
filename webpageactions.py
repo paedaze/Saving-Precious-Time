@@ -24,7 +24,8 @@ def navigate_page(driver):
     driver.execute_script("arguments[0].click();", next_button)
 
 # Answers the questions in the quiz/test
-def answer_questions(driver, wait, attempted_questions):
+def answer_questions(driver, attempted_questions):
+    wait = WebDriverWait(driver, 3)
     question = checks.default_string(driver.find_element(By.XPATH, "//div[@class='test-question']/strong/strong").text)
     labels = driver.find_elements(By.XPATH, "//div[@class='radio']/label")
 
@@ -34,11 +35,11 @@ def answer_questions(driver, wait, attempted_questions):
             if checks.default_string(label.find_element(By.TAG_NAME, 'span').text) == attempted_questions[question]:
                 driver.execute_script("arguments[0].click();", label.find_element(By.TAG_NAME, 'input'))
                 wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-success pull-right test_next_btn_dat']"))).click()
-                break
-    else:
-        options = driver.find_elements(By.XPATH, "//input[@name='option']")            
-        driver.execute_script("arguments[0].click();", options[random.randint(0, len(options) - 1)])
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-success pull-right test_next_btn_dat']"))).click()
+                return None
+            
+    options = driver.find_elements(By.XPATH, "//input[@name='option']")            
+    driver.execute_script("arguments[0].click();", options[random.randint(0, len(options) - 1)])
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-success pull-right test_next_btn_dat']"))).click()
 
 # Starts the quiz/test
 def start_quiz(driver):
@@ -51,3 +52,4 @@ def check_for_security(driver, security_question_answer):
     security_question_box.send_keys(security_question_answer)
     log_me_in_button = driver.find_element(By.XPATH, "//form[@action='https://parkviewhs.learn-to-drive-safely.com/drive/index.php/student/test/take/sq_question']/div[2]/button")
     log_me_in_button.click()
+
