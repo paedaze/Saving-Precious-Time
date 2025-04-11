@@ -66,7 +66,7 @@ while True:
 
     # Answers the questions randomly and clicks the next/redo button upon completing the quiz
     if checks.check_element_visible_by_xpath(driver, "//input[@name='option']"):
-        actions.answer_questions(driver, wait, attempted_questions)
+        actions.answer_questions(driver, attempted_questions)
     # Checks if the quiz has ended
     elif checks.check_element_exists_by_xpath(driver, "//a[@class='btn btn-success pull-right']") and checks.check_element_exists_by_xpath(driver, "//table[@id='table_id']"): # Checks if the next/redo button and table of questions is present
         table = driver.find_element(By.XPATH, "//table[@id='table_id']/tbody")
@@ -81,7 +81,5 @@ while True:
 
         next_button = driver.find_element(By.XPATH, "//a[@class='btn btn-success pull-right']")
         driver.execute_script("arguments[0].click();", next_button)
-
-            
 
 
