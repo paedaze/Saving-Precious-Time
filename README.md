@@ -1,5 +1,5 @@
-# Joshuas-Law-Bot
-A web bot for completing Parkview Community School Online Joshua's Law Course
+# Save Time
+A web bot for saving precious time
 
 # How to Use
 - Run main.py and enter your information in the console
