@@ -1,5 +1,5 @@
-# Save Time
-A web bot for saving precious time
+# Joshua's Law Web Bot
+A web bot that does your joshua's law (only for parkview's joshua's law)
 
 # How to Use
 - Run main.py and enter your information in the console
